@@ -19,6 +19,7 @@
 		B85F5D762277F550004795BD /* FlashCardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85F5D752277F550004795BD /* FlashCardTableViewCell.swift */; };
 		B85F5D782277F5E7004795BD /* FlashCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85F5D772277F5E7004795BD /* FlashCardViewController.swift */; };
 		B85F5D7A2277F7F0004795BD /* QuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85F5D792277F7F0004795BD /* QuizViewController.swift */; };
+		B85F5D7C2277FEE8004795BD /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = B85F5D7B2277FEE8004795BD /* .gitignore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		B85F5D752277F550004795BD /* FlashCardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashCardTableViewCell.swift; sourceTree = "<group>"; };
 		B85F5D772277F5E7004795BD /* FlashCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashCardViewController.swift; sourceTree = "<group>"; };
 		B85F5D792277F7F0004795BD /* QuizViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizViewController.swift; sourceTree = "<group>"; };
+		B85F5D7B2277FEE8004795BD /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +54,7 @@
 		B85F5D4B2277D39C004795BD = {
 			isa = PBXGroup;
 			children = (
+				B85F5D7B2277FEE8004795BD /* .gitignore */,
 				B85F5D562277D39C004795BD /* FlashcardApp */,
 				B85F5D552277D39C004795BD /* Products */,
 			);
@@ -143,6 +146,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B85F5D7C2277FEE8004795BD /* .gitignore in Resources */,
 				B85F5D622277D39D004795BD /* LaunchScreen.storyboard in Resources */,
 				B85F5D5F2277D39D004795BD /* Assets.xcassets in Resources */,
 				B85F5D5D2277D39C004795BD /* Main.storyboard in Resources */,
