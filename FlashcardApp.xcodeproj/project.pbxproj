@@ -12,6 +12,13 @@
 		B85F5D5D2277D39C004795BD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B85F5D5B2277D39C004795BD /* Main.storyboard */; };
 		B85F5D5F2277D39D004795BD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B85F5D5E2277D39D004795BD /* Assets.xcassets */; };
 		B85F5D622277D39D004795BD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B85F5D602277D39D004795BD /* LaunchScreen.storyboard */; };
+		B85F5D6E2277E4AE004795BD /* SetTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85F5D6D2277E4AE004795BD /* SetTableViewController.swift */; };
+		B85F5D702277EE84004795BD /* FlashcardTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85F5D6F2277EE84004795BD /* FlashcardTableViewController.swift */; };
+		B85F5D722277EF47004795BD /* PPModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85F5D712277EF47004795BD /* PPModels.swift */; };
+		B85F5D742277F3AE004795BD /* SetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85F5D732277F3AE004795BD /* SetTableViewCell.swift */; };
+		B85F5D762277F550004795BD /* FlashCardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85F5D752277F550004795BD /* FlashCardTableViewCell.swift */; };
+		B85F5D782277F5E7004795BD /* FlashCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85F5D772277F5E7004795BD /* FlashCardViewController.swift */; };
+		B85F5D7A2277F7F0004795BD /* QuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85F5D792277F7F0004795BD /* QuizViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +29,13 @@
 		B85F5D5E2277D39D004795BD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B85F5D612277D39D004795BD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B85F5D632277D39D004795BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B85F5D6D2277E4AE004795BD /* SetTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetTableViewController.swift; sourceTree = "<group>"; };
+		B85F5D6F2277EE84004795BD /* FlashcardTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardTableViewController.swift; sourceTree = "<group>"; };
+		B85F5D712277EF47004795BD /* PPModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PPModels.swift; path = ../../../../Downloads/PPModels.swift; sourceTree = "<group>"; };
+		B85F5D732277F3AE004795BD /* SetTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetTableViewCell.swift; sourceTree = "<group>"; };
+		B85F5D752277F550004795BD /* FlashCardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashCardTableViewCell.swift; sourceTree = "<group>"; };
+		B85F5D772277F5E7004795BD /* FlashCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashCardViewController.swift; sourceTree = "<group>"; };
+		B85F5D792277F7F0004795BD /* QuizViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +74,13 @@
 				B85F5D5E2277D39D004795BD /* Assets.xcassets */,
 				B85F5D602277D39D004795BD /* LaunchScreen.storyboard */,
 				B85F5D632277D39D004795BD /* Info.plist */,
+				B85F5D712277EF47004795BD /* PPModels.swift */,
+				B85F5D6F2277EE84004795BD /* FlashcardTableViewController.swift */,
+				B85F5D732277F3AE004795BD /* SetTableViewCell.swift */,
+				B85F5D6D2277E4AE004795BD /* SetTableViewController.swift */,
+				B85F5D752277F550004795BD /* FlashCardTableViewCell.swift */,
+				B85F5D772277F5E7004795BD /* FlashCardViewController.swift */,
+				B85F5D792277F7F0004795BD /* QuizViewController.swift */,
 			);
 			path = FlashcardApp;
 			sourceTree = "<group>";
@@ -135,8 +156,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B85F5D742277F3AE004795BD /* SetTableViewCell.swift in Sources */,
+				B85F5D702277EE84004795BD /* FlashcardTableViewController.swift in Sources */,
+				B85F5D762277F550004795BD /* FlashCardTableViewCell.swift in Sources */,
+				B85F5D722277EF47004795BD /* PPModels.swift in Sources */,
 				B85F5D5A2277D39C004795BD /* ViewController.swift in Sources */,
 				B85F5D582277D39C004795BD /* AppDelegate.swift in Sources */,
+				B85F5D7A2277F7F0004795BD /* QuizViewController.swift in Sources */,
+				B85F5D6E2277E4AE004795BD /* SetTableViewController.swift in Sources */,
+				B85F5D782277F5E7004795BD /* FlashCardViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,7 +320,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = XieAppDev.FlashcardApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -310,7 +338,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = XieAppDev.FlashcardApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
