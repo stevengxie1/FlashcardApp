@@ -32,7 +32,7 @@
 		B85F5D632277D39D004795BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B85F5D6D2277E4AE004795BD /* SetTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetTableViewController.swift; sourceTree = "<group>"; };
 		B85F5D6F2277EE84004795BD /* FlashcardTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardTableViewController.swift; sourceTree = "<group>"; };
-		B85F5D712277EF47004795BD /* PPModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PPModels.swift; path = ../../../../Downloads/PPModels.swift; sourceTree = "<group>"; };
+		B85F5D712277EF47004795BD /* PPModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PPModels.swift; sourceTree = "<group>"; };
 		B85F5D732277F3AE004795BD /* SetTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetTableViewCell.swift; sourceTree = "<group>"; };
 		B85F5D752277F550004795BD /* FlashCardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashCardTableViewCell.swift; sourceTree = "<group>"; };
 		B85F5D772277F5E7004795BD /* FlashCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashCardViewController.swift; sourceTree = "<group>"; };

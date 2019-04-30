@@ -9,14 +9,25 @@
 import UIKit
 
 class FlashCardViewController: UIViewController {
-
+    var card = FlashCards.FlashCard()
+    
+    @IBOutlet weak var cardTitle: UITextField!
+    @IBOutlet weak var frontImage: UIImageView!
+    @IBOutlet weak var frontText: UITextView!
+    @IBOutlet weak var backImage: UIImageView!
+    @IBOutlet weak var backText: UITextView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        cardTitle.text = card.title
+        frontImage.image = card.front.photo
+        frontText.text = card.front.content
+        backImage.image = card.back.photo
+        backText.text = card.back.content
     }
     
-
     /*
     // MARK: - Navigation
 

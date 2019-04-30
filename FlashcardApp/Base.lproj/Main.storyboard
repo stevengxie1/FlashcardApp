@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="g7Z-OF-4dN">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="g7Z-OF-4dN">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,20 +13,24 @@
         <!--Navigation Controller-->
         <scene sceneID="wg6-oP-HAP">
             <objects>
-                <navigationController id="g7Z-OF-4dN" sceneMemberID="viewController">
+                <navigationController toolbarHidden="NO" id="g7Z-OF-4dN" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="cgO-xI-wjQ">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Ba1-VJ-49o">
+                        <rect key="frame" x="0.0" y="813" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
-                        <segue destination="1YM-jk-Y2U" kind="relationship" relationship="rootViewController" id="jP9-un-ZMI"/>
+                        <segue destination="tiC-SJ-fs5" kind="relationship" relationship="rootViewController" id="glk-ws-8e4"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JN7-t4-DiJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1666" y="134"/>
         </scene>
-        <!--Flash Card View Controller-->
+        <!--Title-->
         <scene sceneID="NRL-k6-gAe">
             <objects>
                 <viewController id="VG9-VB-ONb" customClass="FlashCardViewController" customModule="FlashcardApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -34,13 +38,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="FlashcardTitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YOF-eN-Pvj">
-                                <rect key="frame" x="133" y="37" width="108" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JvF-vV-LHZ">
                                 <rect key="frame" x="81" y="119" width="240" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -49,7 +46,7 @@
                                 <rect key="frame" x="87" y="255" width="240" height="122"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -84,14 +81,31 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Card Title" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7jz-CG-CCn">
+                                <rect key="frame" x="152" y="88" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="2WO-Rf-Ixg"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Title" id="tFG-2e-prn">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="ZLH-3Y-Eu9"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="backImage" destination="k1E-wn-iOP" id="osu-cC-JuO"/>
+                        <outlet property="backText" destination="8Bm-yR-gEo" id="bTc-Oi-NCG"/>
+                        <outlet property="cardTitle" destination="7jz-CG-CCn" id="GNT-UN-fVd"/>
+                        <outlet property="frontImage" destination="JvF-vV-LHZ" id="7BB-sT-Kkk"/>
+                        <outlet property="frontText" destination="ZF8-OD-Ub0" id="yFX-81-a6r"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EVm-qZ-XNt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1941" y="133"/>
+            <point key="canvasLocation" x="659" y="134"/>
         </scene>
         <!--Quiz View Controller-->
         <scene sceneID="FcL-Dx-nxI">
@@ -149,7 +163,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mta-T8-cx9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1940.5797101449277" y="859.82142857142856"/>
+            <point key="canvasLocation" x="-117" y="847"/>
         </scene>
         <!--Flashcard Sets-->
         <scene sceneID="Wis-0x-WXk">
@@ -188,7 +202,7 @@
                                 <connections>
                                     <outlet property="setCardCount" destination="Iay-Xj-1cU" id="co4-rw-pvy"/>
                                     <outlet property="setTitle" destination="2bK-DV-Lns" id="kzt-Ur-lIZ"/>
-                                    <segue destination="p9y-0T-cgi" kind="show" id="mnu-aQ-jya"/>
+                                    <segue destination="Psx-lA-6TH" kind="show" identifier="SetDetail" id="AYg-dG-tWa"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -197,43 +211,26 @@
                             <outlet property="delegate" destination="tiC-SJ-fs5" id="t6U-IT-rpN"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Add" id="buj-W0-1pR"/>
-                    <navigationItem key="navigationItem" title="Flashcard Sets" id="ggr-o2-pOI"/>
+                    <navigationItem key="navigationItem" title="Flashcard Sets" id="ggr-o2-pOI">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="J7D-US-Y1f"/>
+                    </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vJs-AQ-Q6b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-230.43478260869566" y="132.58928571428572"/>
+            <point key="canvasLocation" x="-884" y="134"/>
         </scene>
-        <!--Item-->
+        <!--Flashcard Set-->
         <scene sceneID="cCo-FK-lbW">
             <objects>
-                <tableViewController id="Psx-lA-6TH" sceneMemberID="viewController">
+                <tableViewController id="Psx-lA-6TH" customClass="FlashcardTableViewController" customModule="FlashcardApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="9C4-Ny-FSS">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <navigationBar key="tableHeaderView" contentMode="scaleToFill" id="KY9-6h-awF">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <items>
-                                <navigationItem title="Flashcards" id="bFM-be-tOK">
-                                    <barButtonItem key="leftBarButtonItem" title="Quiz" id="RSp-LC-OBW">
-                                        <connections>
-                                            <segue destination="9Cx-Mw-wWz" kind="show" id="kkK-4L-znd"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem key="rightBarButtonItem" title="Add" id="88Z-7K-MMK">
-                                        <connections>
-                                            <segue destination="VG9-VB-ONb" kind="show" id="Ltm-qm-A4S"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </navigationItem>
-                            </items>
-                        </navigationBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FlashCardTableViewCell" rowHeight="80" id="dxb-9P-Yhe" customClass="FlashCardTableViewCell" customModule="FlashcardApp" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="72" width="414" height="80"/>
+                                <rect key="frame" x="0.0" y="28" width="414" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dxb-9P-Yhe" id="Xt0-Xc-1UB">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="79.5"/>
@@ -266,7 +263,7 @@
                                     <outlet property="backTextView" destination="C8P-lg-aQh" id="dwR-9b-lKQ"/>
                                     <outlet property="flashcardTitle" destination="5JP-Be-8Sk" id="Tqa-8Q-Vum"/>
                                     <outlet property="frontTextView" destination="kYA-Mg-WVD" id="nZe-uH-eMJ"/>
-                                    <segue destination="VG9-VB-ONb" kind="show" id="h2F-Lb-3Az"/>
+                                    <segue destination="VG9-VB-ONb" kind="show" identifier="ShowCard" id="h2F-Lb-3Az"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -275,46 +272,25 @@
                             <outlet property="delegate" destination="Psx-lA-6TH" id="47a-Ke-mfj"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Item" id="Msc-Cq-FfI"/>
+                    <toolbarItems>
+                        <barButtonItem title="Quiz" id="RSp-LC-OBW">
+                            <connections>
+                                <segue destination="9Cx-Mw-wWz" kind="show" id="kkK-4L-znd"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
+                    <navigationItem key="navigationItem" title="Flashcard Set" id="H6A-0W-Jr8">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="88Z-7K-MMK">
+                            <connections>
+                                <segue destination="VG9-VB-ONb" kind="show" identifier="AddCard" id="Ltm-qm-A4S"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GeT-W6-gdg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1213.0434782608697" y="132.58928571428572"/>
-        </scene>
-        <!--Tab Bar Controller-->
-        <scene sceneID="eO5-lI-d3c">
-            <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="1YM-jk-Y2U" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" id="o1V-jV-3tI"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="suW-Lc-VE7">
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </tabBar>
-                    <connections>
-                        <segue destination="tiC-SJ-fs5" kind="relationship" relationship="viewControllers" id="HgI-G7-0zG"/>
-                    </connections>
-                </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="E7K-SD-pNv" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-961" y="133"/>
-        </scene>
-        <!--Tab Bar Controller-->
-        <scene sceneID="eUd-Yf-bgp">
-            <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="p9y-0T-cgi" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="aek-xQ-cZ2">
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </tabBar>
-                    <connections>
-                        <segue destination="Psx-lA-6TH" kind="relationship" relationship="viewControllers" id="F9p-Xr-3FR"/>
-                    </connections>
-                </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Y0T-Gc-cC4" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="501" y="133"/>
+            <point key="canvasLocation" x="-116" y="134"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
