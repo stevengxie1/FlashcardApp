@@ -8,7 +8,9 @@
 
 import UIKit
 
-class QuizViewController: UIViewController {
+class QuizViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIImagePickerControllerDelegate {
+    var set: FlashCards?
+    var currentIndex = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()

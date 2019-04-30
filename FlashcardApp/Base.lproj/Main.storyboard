@@ -278,6 +278,7 @@
                                 <segue destination="9Cx-Mw-wWz" kind="show" id="kkK-4L-znd"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem title="Share" id="8u2-R4-NPO"/>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Flashcard Set" id="H6A-0W-Jr8">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="88Z-7K-MMK">
