@@ -48,18 +48,18 @@ class FlashCardViewController: UIViewController {
         }
     }
     
-    func textFieldDidBeginEditing(_ textField: UITextField) {
+    func textViewDidBeginEditing(_ textField: UITextView) {
         // Disable the Save button while editing.
         saveButton.isEnabled = false
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    func textViewShouldReturn(_ textField: UITextView) -> Bool {
         // Hide the keyboard.
         textField.resignFirstResponder()
         return true
     }
     
-    func textFieldDidEndEditing(_ textField: UITextField) {
+    func textViewDidEndEditing(_ textField: UITextView) {
         updateSaveButtonState()
     }
     

@@ -51,7 +51,10 @@ class SetTableViewController: UITableViewController {
         return cell
     }
     
-
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    
+    }
     
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -86,6 +89,31 @@ class SetTableViewController: UITableViewController {
     }
     */
 
+    // MARK: - UI Button Press
+    
+    @IBAction func addSetButtonPress(_ sender: UIBarButtonItem) {
+        let alert = UIAlertController(title: "What's the name of the set?", message: nil, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        alert.addTextField(configurationHandler: { textField in
+            textField.placeholder = "Input the name here..."
+        })
+        
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+            
+            if let name = alert.textFields?.first?.text {
+                print("Your name: \(name)")
+                
+                let newIndexPath = IndexPath(row: self.flashcardSets.count, section: 0)
+                self.flashcardSets.append(FlashCards(name: name))
+                self.tableView.insertRows(at: [newIndexPath], with: .automatic)
+                
+            }
+        }))
+        
+        self.present(alert, animated: true)
+    }
+    
     
     // MARK: - Navigation
 

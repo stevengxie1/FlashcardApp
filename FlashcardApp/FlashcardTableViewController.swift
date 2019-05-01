@@ -12,6 +12,8 @@ class FlashcardTableViewController: UITableViewController {
 
     var set = FlashCards(name: "New FlashCards")
     
+    @IBOutlet weak var flashcardSetTitle: UINavigationItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -20,6 +22,8 @@ class FlashcardTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         //self.navigationItem.rightBarButtonItem = self.editButtonItem
+        flashcardSetTitle.title = "\(set.name) Set"
+        
     }
 
     // MARK: - Table view data source
@@ -82,6 +86,27 @@ class FlashcardTableViewController: UITableViewController {
     }
     */
 
+    // MARK: - Button clicks
+    
+    @IBAction func renameSetClick(_ sender: UIBarButtonItem) {
+        let alert = UIAlertController(title: "What's the name of the set?", message: nil, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        alert.addTextField(configurationHandler: { textField in
+            textField.placeholder = "Input the name here..."
+        })
+        
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+            
+            if let name = alert.textFields?.first?.text {
+                print("Your name: \(name)")
+                self.set.name = name
+                self.flashcardSetTitle.title = name
+            }
+        }))
+        
+        self.present(alert, animated: true)
+    }
     
     // MARK: - Navigation
 
