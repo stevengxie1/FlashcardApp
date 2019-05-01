@@ -79,16 +79,13 @@ class FlashCardViewController: UIViewController {
         }
         
         // Set using data fields
-        card = FlashCards.FlashCard(title: cardTitle.text!, frontPhoto: frontImage.image, frontContent: frontText.text!, backPhoto: backImage.image, backContent: backText.text!)
+        card = FlashCards.FlashCard(title: cardTitle.text!, frontPhoto: frontImage.image, frontContent: frontText.text, backPhoto: backImage.image, backContent: backText.text)
     }
     
     // A Check on whether to enable saving the card
     private func updateSaveButtonState() {
         let titleText = cardTitle.text ?? ""
-        let text1 = frontText.text ?? ""
-        let text2 = backText.text ?? ""
-        saveButton.isEnabled = !titleText.isEmpty && !text1.isEmpty && !text2.isEmpty
+        saveButton.isEnabled = !titleText.isEmpty
     }
-    
 
 }

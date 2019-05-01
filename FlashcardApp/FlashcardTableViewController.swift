@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import os.log
 
 class FlashcardTableViewController: UITableViewController {
 
     var set = FlashCards(name: "New FlashCards")
+    var vc: SetTableViewController?
     
     @IBOutlet weak var flashcardSetTitle: UINavigationItem!
     
@@ -64,10 +66,19 @@ class FlashcardTableViewController: UITableViewController {
         if editingStyle == .delete {
             // Delete the row from the data source
             set.cards.remove(at: indexPath.row)
+            letTableSave()
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
+    }
+    
+    private func letTableSave() {
+        if let pvc = vc {
+            pvc.saveSets()
+        } else {
+            os_log("Failed to each set view controller", log: OSLog.default, type: .error)
+        }
     }
     
 
@@ -102,6 +113,7 @@ class FlashcardTableViewController: UITableViewController {
                 print("Your name: \(name)")
                 self.set.name = name
                 self.flashcardSetTitle.title = name
+                self.letTableSave()
             }
         }))
         
@@ -160,6 +172,7 @@ class FlashcardTableViewController: UITableViewController {
                 set.cards.append(flashcard)
                 tableView.insertRows(at: [newIndexPath], with: .automatic)
             }
+            letTableSave()
         }
     }
     

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import os.log
 
 class SetTableViewController: UITableViewController {
 
@@ -23,7 +24,18 @@ class SetTableViewController: UITableViewController {
 
         // display an Edit button in the navigation bar for this view controller.
         //self.navigationItem.rightBarButtonItem = self.editButtonItem
-        flashcardSets = sampleSetsOfFlashCards()
+        //flashcardSets = sampleSetsOfFlashCards()
+        
+        let savedSets = loadSets()
+        if let s = savedSets {
+            print(s.count)
+        }
+        
+        if savedSets?.count ?? 0 > 0 {
+            flashcardSets = savedSets ?? [FlashCards]()
+        } else {
+            flashcardSets = sampleSetsOfFlashCards()
+        }
     }
 
     // MARK: - Table view data source
@@ -52,8 +64,8 @@ class SetTableViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        self.tableView.reloadData()
         super.viewWillAppear(animated)
-    
     }
     
     // Override to support conditional editing of the table view.
@@ -67,6 +79,7 @@ class SetTableViewController: UITableViewController {
         if editingStyle == .delete {
             // Delete the row from the data source
             flashcardSets.remove(at: indexPath.row)
+            saveSets()
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
@@ -107,7 +120,7 @@ class SetTableViewController: UITableViewController {
                 let newIndexPath = IndexPath(row: self.flashcardSets.count, section: 0)
                 self.flashcardSets.append(FlashCards(name: name))
                 self.tableView.insertRows(at: [newIndexPath], with: .automatic)
-                
+                self.saveSets()
             }
         }))
         
@@ -135,7 +148,7 @@ class SetTableViewController: UITableViewController {
                 fatalError("The selected cell is not being displayed by the table")
             }
             vc.set = flashcardSets[indexPath.row]
-            
+            vc.vc = self
         default: fatalError("unknown identifier")
         }
     }
@@ -150,5 +163,47 @@ class SetTableViewController: UITableViewController {
         let thirdSet = FlashCards(name: "iOS")
         return [firstSet, secondSet, thirdSet]
     }
-
+    
+    func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return paths[0]
+    }
+    
+    func saveSets() {
+        do{
+            let fullPath = getDocumentsDirectory().appendingPathComponent("sets")
+            let data = try NSKeyedArchiver.archivedData(withRootObject: flashcardSets, requiringSecureCoding: false)
+            try data.write(to: fullPath)
+            os_log("Successfully saved.", log: OSLog.default, type: .debug)
+            print("Successfully saved.")
+        }
+        catch {
+            os_log("Failed to save", log: OSLog.default, type: .error)
+            print("Failed to save")
+        }
+        //let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(flashcardSets, toFile: FlashCards.ArchiveURL.path)
+        //if isSuccessfulSave {
+            //os_log("Successfully saved.", log: OSLog.default, type: .debug)
+            //print("Successfully saved.")
+        //} else {
+            //os_log("Failed to save", log: OSLog.default, type: .error)
+            //print("Failed to save")
+        //}
+    }
+    
+    func loadSets() -> [FlashCards]? {
+        let fullPath = getDocumentsDirectory().appendingPathComponent("sets")
+        if let nsData = NSData(contentsOf: fullPath) {
+            do {
+                let data = Data(referencing: nsData)
+                if let loadSets = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [FlashCards] {
+                    return loadSets
+                }
+            } catch {
+                print("Couldn't read file.")
+                return nil
+            }
+        }
+        return nil
+    }
 }
