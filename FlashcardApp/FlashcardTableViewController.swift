@@ -103,13 +103,38 @@ class FlashcardTableViewController: UITableViewController {
                 fatalError()
             }
             vc.card = set.cards[indexPath.row]
+            
         case "AddCard":
             guard let vc = segue.destination as? FlashCardViewController else {
                 fatalError()
             }
             vc.card = FlashCards.FlashCard()
+            
+        case "ShowQuiz":
+            guard let vc = segue.destination as? QuizViewController else {
+                fatalError("Failed to segue to the quiz...")
+            }
+            vc.set = self.set
+            
         default:
             fatalError(segue.identifier ?? "")
+        }
+    }
+    
+    // Handles the unwind for editing a new flashcard or creating a new one
+    @IBAction func unwindToSetTableView(sender: UIStoryboardSegue) {
+        if let sourceViewController = sender.source as? FlashCardViewController {
+            let flashcard = sourceViewController.card
+            // If updating:
+            if let selectedIndexPath = tableView.indexPathForSelectedRow {
+                set.cards[selectedIndexPath.row] = flashcard
+                tableView.reloadRows(at: [selectedIndexPath], with: .none)
+            // Otherwise, add as new
+            } else {
+                let newIndexPath = IndexPath(row: set.cards.count, section: 0)
+                set.cards.append(flashcard)
+                tableView.insertRows(at: [newIndexPath], with: .automatic)
+            }
         }
     }
     
