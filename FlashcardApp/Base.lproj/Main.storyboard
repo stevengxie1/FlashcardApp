@@ -343,8 +343,17 @@
                                 <segue destination="9Cx-Mw-wWz" kind="show" identifier="ShowQuiz" id="kkK-4L-znd"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem width="109" style="plain" systemItem="fixedSpace" id="dc5-Yf-2h9"/>
-                        <barButtonItem title="Share" id="8u2-R4-NPO"/>
+                        <barButtonItem width="64" style="plain" systemItem="fixedSpace" id="dc5-Yf-2h9"/>
+                        <barButtonItem title="Session" width="115" id="f3g-Xl-zJM">
+                            <connections>
+                                <action selector="showConnectivityAction:" destination="Psx-lA-6TH" id="l1L-Xk-eQO"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem title="Share" id="8u2-R4-NPO">
+                            <connections>
+                                <action selector="shareSet:" destination="Psx-lA-6TH" id="dXW-J1-syB"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem width="68" style="plain" systemItem="fixedSpace" id="B4D-Yd-3Cs"/>
                         <barButtonItem title="Rename" id="FwY-pK-9g0">
                             <connections>
