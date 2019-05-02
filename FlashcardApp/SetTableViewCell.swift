@@ -8,11 +8,16 @@
 
 import UIKit
 
+protocol SetCellDelegate {
+    func didShare(_ cell: SetTableViewCell)
+}
+
 class SetTableViewCell: UITableViewCell {
 
     @IBOutlet weak var setTitle: UILabel!
     @IBOutlet weak var setCardCount: UILabel!
     
+    var delegate: SetCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,6 +28,12 @@ class SetTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    @IBAction func shareCell(_ sender: Any) {
+        if let delegateObject = self.delegate {
+            delegateObject.didShare(self)
+        }
     }
 
 }

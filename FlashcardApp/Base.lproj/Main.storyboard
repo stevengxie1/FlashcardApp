@@ -243,7 +243,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title of Set" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2bK-DV-Lns">
-                                            <rect key="frame" x="16" y="11" width="238" height="47"/>
+                                            <rect key="frame" x="16" y="11" width="191" height="47"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -251,13 +251,21 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="# of Cards: " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iay-Xj-1cU">
-                                            <rect key="frame" x="277" y="11" width="117" height="47"/>
+                                            <rect key="frame" x="222" y="11" width="117" height="47"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TTs-Uu-iGs">
+                                            <rect key="frame" x="351" y="19" width="40" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Share"/>
+                                            <connections>
+                                                <action selector="shareCell:" destination="7ad-8g-KwK" eventType="touchUpInside" id="41H-85-3En"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
@@ -272,6 +280,13 @@
                             <outlet property="delegate" destination="tiC-SJ-fs5" id="t6U-IT-rpN"/>
                         </connections>
                     </tableView>
+                    <toolbarItems>
+                        <barButtonItem title="Session" id="VhP-XC-hCa">
+                            <connections>
+                                <action selector="showConnectivityAction:" destination="tiC-SJ-fs5" id="oJe-d6-ljC"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" title="Flashcard Sets" id="ggr-o2-pOI">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="J7D-US-Y1f">
                             <connections>
@@ -280,10 +295,11 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vJs-AQ-Q6b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-884" y="134"/>
+            <point key="canvasLocation" x="-884.05797101449286" y="133.92857142857142"/>
         </scene>
         <!--Flashcard Set-->
         <scene sceneID="cCo-FK-lbW">
@@ -344,17 +360,7 @@
                             </connections>
                         </barButtonItem>
                         <barButtonItem width="64" style="plain" systemItem="fixedSpace" id="dc5-Yf-2h9"/>
-                        <barButtonItem title="Session" width="115" id="f3g-Xl-zJM">
-                            <connections>
-                                <action selector="showConnectivityAction:" destination="Psx-lA-6TH" id="l1L-Xk-eQO"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem title="Share" id="8u2-R4-NPO">
-                            <connections>
-                                <action selector="shareSet:" destination="Psx-lA-6TH" id="dXW-J1-syB"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem width="68" style="plain" systemItem="fixedSpace" id="B4D-Yd-3Cs"/>
+                        <barButtonItem width="199" style="plain" systemItem="fixedSpace" id="B4D-Yd-3Cs"/>
                         <barButtonItem title="Rename" id="FwY-pK-9g0">
                             <connections>
                                 <action selector="renameSetClick:" destination="Psx-lA-6TH" id="1EN-i6-omt"/>

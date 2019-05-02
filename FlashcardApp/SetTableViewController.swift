@@ -8,9 +8,101 @@
 
 import UIKit
 import os.log
+import MultipeerConnectivity
 
-class SetTableViewController: UITableViewController {
-
+class SetTableViewController: UITableViewController, MCSessionDelegate, MCBrowserViewControllerDelegate, SetCellDelegate {
+    
+    func didShare(_ cell: SetTableViewCell) {
+        print("didShare called")
+        if let indexPath = tableView.indexPath(for: cell){
+            let sendItem = flashcardSets[indexPath.row]
+            if mcSession.connectedPeers.count > 0 {
+                do {
+                    let data = try NSKeyedArchiver.archivedData(withRootObject: sendItem, requiringSecureCoding: false)
+                    try mcSession.send(data, toPeers: mcSession.connectedPeers, with: .reliable)
+                } catch {
+                    fatalError("Unable to compress data")
+                }
+            } else {
+                print("you are not connected to another device")
+            }
+        }
+    }
+    
+    func browserViewControllerDidFinish(_ browserViewController: MCBrowserViewController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func browserViewControllerWasCancelled(_ browserViewController: MCBrowserViewController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
+        switch state {
+        case MCSessionState.connected:
+            print("Connected: \(peerID.displayName)")
+            
+        case MCSessionState.connecting:
+            print("Connecting: \(peerID.displayName)")
+            
+        case MCSessionState.notConnected:
+            print("Not Connected: \(peerID.displayName)")
+        }
+    }
+    
+    func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
+        do {
+            if let newSet = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? FlashCards {
+                flashcardSets.append(newSet)
+                saveSets()
+                DispatchQueue.main.async {
+                    let indexPath = IndexPath(row: self.tableView.numberOfRows(inSection: 0), section: 0)
+                    
+                    self.tableView.insertRows(at: [indexPath], with: .automatic)
+                }
+            }
+        } catch {
+            fatalError("Unable to process recieved data")
+        }
+    }
+    
+    func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID) {
+        
+    }
+    
+    func session(_ session: MCSession, didStartReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, with progress: Progress) {
+        
+    }
+    
+    func session(_ session: MCSession, didFinishReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, at localURL: URL?, withError error: Error?) {
+        
+    }
+    
+    @IBAction func showConnectivityAction(_ sender: Any) {
+        let actionSheet = UIAlertController(title: "ToDo Exchange", message: "Do you want to Host or Join a session?", preferredStyle: .actionSheet)
+        
+        actionSheet.addAction(UIAlertAction(title: "Host Session", style: .default, handler: { (action:UIAlertAction) in
+            
+            self.mcAdvertiserAssistant = MCAdvertiserAssistant(serviceType: "ba-td", discoveryInfo: nil, session: self.mcSession)
+            self.mcAdvertiserAssistant.start()
+            
+        }))
+        
+        actionSheet.addAction(UIAlertAction(title: "Join Session", style: .default, handler: { (action:UIAlertAction) in
+            let mcBrowser = MCBrowserViewController(serviceType: "ba-td", session: self.mcSession)
+            mcBrowser.delegate = self
+            self.present(mcBrowser, animated: true, completion: nil)
+        }))
+        
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        self.present(actionSheet, animated: true, completion: nil)
+    }
+    
+    var peerID:MCPeerID!
+    var mcSession:MCSession!
+    var mcAdvertiserAssistant:MCAdvertiserAssistant!
+    
     // MARK: - Data structures
     var flashcardSets = [FlashCards]()
     // MARK: - References to Cell
@@ -36,6 +128,11 @@ class SetTableViewController: UITableViewController {
         } else {
             flashcardSets = sampleSetsOfFlashCards()
         }
+        
+        peerID = MCPeerID(displayName: UIDevice.current.name)
+        mcSession = MCSession(peer: peerID, securityIdentity: nil, encryptionPreference: .optional)
+        mcSession.delegate = self
+
     }
 
     // MARK: - Table view data source
@@ -58,7 +155,7 @@ class SetTableViewController: UITableViewController {
         let flashcard = flashcardSets[indexPath.row]
         cell.setTitle.text = flashcard.name
         cell.setCardCount.text = String(flashcard.cards.count)
-        
+        cell.delegate = self
         // Configure the cell...
         return cell
     }
@@ -181,14 +278,6 @@ class SetTableViewController: UITableViewController {
             os_log("Failed to save", log: OSLog.default, type: .error)
             print("Failed to save")
         }
-        //let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(flashcardSets, toFile: FlashCards.ArchiveURL.path)
-        //if isSuccessfulSave {
-            //os_log("Successfully saved.", log: OSLog.default, type: .debug)
-            //print("Successfully saved.")
-        //} else {
-            //os_log("Failed to save", log: OSLog.default, type: .error)
-            //print("Failed to save")
-        //}
     }
     
     func loadSets() -> [FlashCards]? {
