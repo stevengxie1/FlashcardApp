@@ -79,7 +79,7 @@ class SetTableViewController: UITableViewController, MCSessionDelegate, MCBrowse
     }
     
     @IBAction func showConnectivityAction(_ sender: Any) {
-        let actionSheet = UIAlertController(title: "ToDo Exchange", message: "Do you want to Host or Join a session?", preferredStyle: .actionSheet)
+        let actionSheet = UIAlertController(title: "Share Flashcard Sets", message: "Do you want to Host or Join a session?", preferredStyle: .actionSheet)
         
         actionSheet.addAction(UIAlertAction(title: "Host Session", style: .default, handler: { (action:UIAlertAction) in
             

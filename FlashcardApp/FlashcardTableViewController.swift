@@ -14,6 +14,8 @@ class FlashcardTableViewController: UITableViewController {
     var set = FlashCards(name: "New FlashCards")
     var vc: SetTableViewController?
     
+    @IBOutlet weak var quizButton: UIBarButtonItem!
+    
     @IBOutlet weak var flashcardSetTitle: UINavigationItem!
     
     override func viewDidLoad() {
@@ -24,7 +26,7 @@ class FlashcardTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         //self.navigationItem.rightBarButtonItem = self.editButtonItem
-        
+        updateQuizButton()
         flashcardSetTitle.title = "\(set.name) Set"
     }
 
@@ -40,7 +42,6 @@ class FlashcardTableViewController: UITableViewController {
         return set.cards.count
     }
 
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "FlashCardTableViewCell", for: indexPath) as? FlashCardTableViewCell else {
             fatalError()
@@ -52,8 +53,6 @@ class FlashcardTableViewController: UITableViewController {
         cell.flashcardTitle.text = card.title
         return cell
     }
-    
-
     
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -70,7 +69,8 @@ class FlashcardTableViewController: UITableViewController {
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+        }
+        updateQuizButton()
     }
     
     private func letTableSave() {
@@ -173,7 +173,15 @@ class FlashcardTableViewController: UITableViewController {
                 tableView.insertRows(at: [newIndexPath], with: .automatic)
             }
             letTableSave()
+            updateQuizButton()
         }
     }
     
+    func updateQuizButton() {
+        if set.cards.count > 0 {
+            quizButton.isEnabled = true
+        } else {
+            quizButton.isEnabled = false
+        }
+    }
 }

@@ -118,25 +118,4 @@ class FlashCards: NSObject, NSCoding{
         self.init(name: name, cards: [FlashCard]())
     }
     
-   //enum CodingKeys: String, CodingKey {
-   //    case name
-   //    case cards
-   //}
-   //
-   //required convenience init(from decoder: Decoder) throws {
-   //    let container = try decoder.container(keyedBy: CodingKeys.self)
-   //    name = try container.decode(String.self, forKey: .name)
-   //
-   //    let cardsData = try container.decode(Data.self, forKey: .cards)
-   //    cards = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(cardsData) as! [FlashCard]
-   //}
-   //
-   //func encode(to encoder: Encoder) throws {
-   //    var container = encoder.container(keyedBy: CodingKeys.self)
-   //    try container.encode(name, forKey: .name)
-   //
-   //    let cardData = try NSKeyedArchiver.archivedData(withRootObject: cards, requiringSecureCoding: false)
-   //    try container.encode(cardData, forKey: .cards)
-   //}
-
 }

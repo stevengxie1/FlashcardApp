@@ -29,6 +29,7 @@ class QuizViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
 
         // Set the flashcard's image view and text accordingly
         // TODO: Add some kind of try catch in case the index is zero(?) or consider just disabling quiz mode if there's no flashcards
+        
         quizImageView.image = set?.cards[currentIndex].front.photo
         quizTextView.text = set?.cards[currentIndex].front.content
     }

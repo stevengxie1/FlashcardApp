@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FlashCardViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate {
+class FlashCardViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate, UITextFieldDelegate {
     
     var card = FlashCards.FlashCard()
     var frontImageTapped = false
@@ -26,6 +26,7 @@ class FlashCardViewController: UIViewController, UIImagePickerControllerDelegate
 
         // Do any additional setup after loading the view.
         cardTitle.text = card.title
+        cardTitle.delegate = self
         if let fimage = card.front.photo{
             frontImage.image = fimage
         }
@@ -62,12 +63,14 @@ class FlashCardViewController: UIViewController, UIImagePickerControllerDelegate
     }
     
     var isFrontText = false
+    var keyboardMoved = false
     var keyboardCGRect: CGRect = CGRect(x: 0, y: 0, width: 0, height: 0)
     /*
      Handle the keyboard pushing up the view if it obscures the textView
      */
     @objc func keyboardWillShow(notification: NSNotification) {
         if isFrontText {
+            keyboardMoved = false
             return
         }
         
@@ -75,6 +78,7 @@ class FlashCardViewController: UIViewController, UIImagePickerControllerDelegate
             if self.view.frame.origin.y == 0 {
                 self.view.frame.origin.y -= keyboardSize.height
                 keyboardCGRect = keyboardSize
+                keyboardMoved = true
             }
         }
     }
@@ -83,18 +87,19 @@ class FlashCardViewController: UIViewController, UIImagePickerControllerDelegate
         if isFrontText {
             isFrontText = !isFrontText
         }
-        if self.view.frame.origin.y != 0 {
+        if keyboardMoved && self.view.frame.origin.y != 0 {
             self.view.frame.origin.y = 0
+            keyboardMoved = false
         }
     }
     // ---------------
     
-    func textViewDidBeginEditing(_ textField: UITextView) {
-        if let textViewName = textField.accessibilityIdentifier, textViewName == "frontTextView" {
-            print("Entered front text view if")
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if let textViewName = textView.accessibilityIdentifier, textViewName == "frontTextView" {
             isFrontText = true
-            if self.view.frame.origin.y != 0 {
+            if keyboardMoved && self.view.frame.origin.y != 0 {
                 self.view.frame.origin.y = 0
+                keyboardMoved = false
             }
         } else {
             isFrontText = false
@@ -102,13 +107,31 @@ class FlashCardViewController: UIViewController, UIImagePickerControllerDelegate
         saveButton.isEnabled = false
     }
     
-    func textViewShouldReturn(_ textField: UITextView) -> Bool {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        isFrontText = true
+        if keyboardMoved && self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y = 0
+            keyboardMoved = false
+        }
+        saveButton.isEnabled = false
+    }
+    
+    func textViewShouldReturn(_ textView: UITextView) -> Bool {
         // Hide the keyboard.
-        textField.resignFirstResponder()
+        //textView.resignFirstResponder()
         return true
     }
     
-    func textViewDidEndEditing(_ textField: UITextView) {
+    func textViewDidEndEditing(_ textView: UITextView) {
+        updateSaveButtonState()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        //textField.resignFirstResponder()
+        return true
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
         updateSaveButtonState()
     }
     
