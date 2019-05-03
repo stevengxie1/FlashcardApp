@@ -11,8 +11,9 @@ import UIKit
 class FlashCardTableViewCell: UITableViewCell {
     
     @IBOutlet weak var flashcardTitle: UILabel!
-    @IBOutlet weak var frontTextView: UITextView!
-    @IBOutlet weak var backTextView: UITextView!
+
+    @IBOutlet weak var frontTextView: UILabel! 
+    @IBOutlet weak var backTextView: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

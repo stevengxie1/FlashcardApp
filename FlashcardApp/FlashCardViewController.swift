@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FlashCardViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class FlashCardViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate {
     
     var card = FlashCards.FlashCard()
     var frontImageTapped = false
@@ -32,7 +32,9 @@ class FlashCardViewController: UIViewController, UIImagePickerControllerDelegate
         if let bimage = card.back.photo{
             backImage.image = bimage
         }
+        frontText.delegate = self
         frontText.text = card.front.content
+        backText.delegate = self
         backText.text = card.back.content
         frontImage.isMultipleTouchEnabled = true
         frontImage.isUserInteractionEnabled = true
@@ -40,6 +42,9 @@ class FlashCardViewController: UIViewController, UIImagePickerControllerDelegate
         backImage.isUserInteractionEnabled = true
         saveButton.isEnabled = false
         updateSaveButtonState()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     @IBAction func cancelButtonAction(_ sender: UIBarButtonItem) {
@@ -56,8 +61,44 @@ class FlashCardViewController: UIViewController, UIImagePickerControllerDelegate
         }
     }
     
+    var isFrontText = false
+    var keyboardCGRect: CGRect = CGRect(x: 0, y: 0, width: 0, height: 0)
+    /*
+     Handle the keyboard pushing up the view if it obscures the textView
+     */
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if isFrontText {
+            return
+        }
+        
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y == 0 {
+                self.view.frame.origin.y -= keyboardSize.height
+                keyboardCGRect = keyboardSize
+            }
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        if isFrontText {
+            isFrontText = !isFrontText
+        }
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y = 0
+        }
+    }
+    // ---------------
+    
     func textViewDidBeginEditing(_ textField: UITextView) {
-        // Disable the Save button while editing.
+        if let textViewName = textField.accessibilityIdentifier, textViewName == "frontTextView" {
+            print("Entered front text view if")
+            isFrontText = true
+            if self.view.frame.origin.y != 0 {
+                self.view.frame.origin.y = 0
+            }
+        } else {
+            isFrontText = false
+        }
         saveButton.isEnabled = false
     }
     
